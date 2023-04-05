@@ -1,0 +1,134 @@
+*{
+    margin:0px;
+}
+html{
+    height:100vh;
+}
+
+body{
+    width:100%;
+    height:100%;
+    background-color: black;
+}
+
+.container{
+    width:100%;
+    height:900px;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    background:black;
+
+}
+.left{
+    width:500px;
+    height:600px;
+    background-color: black;
+    float:left;
+}
+
+.img_wrapper{
+    height:200px;
+    background-color: black;
+}
+
+.img{
+   width: 180px;
+   height:100px
+}
+
+.left2{
+    background-color:black;
+    width:100%
+    height:200px;
+}
+.left2_title{
+    font-style: italic;
+    color:white;
+}
+.left2_content{
+    color:white;
+}
+.left3{
+    background-color: black;
+    display:flex;
+    justify-content:space-between;
+    height:200px;
+    
+}
+.left_imgbox{
+    flex-basis: 150px;
+    background-color: white;
+    height:150px;
+    border-radius: 5px;
+    font-style: italic;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right{
+    width:500px;
+    height:600px;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    }
+.right_title{
+    font-style:italic;
+    align-items: center;
+    color:white;
+}
+.login_id{
+    position: relative;
+  width: 300px;
+}
+Input{
+    /* border :5px; */
+    /* border-radius: 10%; */
+    width: 100%;
+  border: 1px solid #bbb;
+  border-radius: 30px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.img_ID{
+     position:absolute; 
+  width: 17px;
+  top: 10px;
+  left: 10px;
+  margin: 0;
+}
+.ID{
+ 
+}
+.login_PW{
+    position: relative;
+  width: 300px;
+}
+.img_PW{
+    position:absolute; 
+  width: 17px;
+  top: 10px;
+  left:10px;
+  /* right: 80px; */
+  margin: 0;
+}
+
+button{
+   
+    background-color: orange;
+    color:white;
+    /* align-items: center;
+    justify-content: center;
+    display: flex; */
+    width: 100%;
+    border: 1px solid #bbb;
+    border-radius: 30px;
+    padding: 10px 12px;
+    font-size: 14px;
+}
