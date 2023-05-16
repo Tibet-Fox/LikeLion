@@ -11,6 +11,9 @@
 <h3> - Week1 <학생 관리 프로그램> </h3>
   <h4> - 1)Week1 과제파일</h4>
   <h4> - 2)Week1 코드리뷰</h4>
+<h3> - Week2 <Django Blog Modeling>
+  <h4> - 1)Week2 과제파일 </h4>
+  <h4> - 2)Week2 코드리뷰 </h4>
 </body>
 
 </html>
