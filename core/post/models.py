@@ -3,7 +3,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 
 
- #Blog
+#Blog
 class Blog(models.Model):
     title = models.CharField(max_length=20)
     description = models.CharField(max_length=100, null=True)
@@ -28,7 +28,7 @@ class Category(models.Model):
 class Post(models.Model):  # pk값 지정 안 하면 Django가 알아서 판단하고 생성
     title = models.CharField(max_length=200)  # 작성한 글의 제목, 길이가 정해진 문자열
     content_text = models.TextField()
-      # 작성한 글의 제목, CharField함수를 사용해 길이가 정해지지 않은 문자열을 저장하도록 함.
+    # 작성한 글의 제목, CharField함수를 사용해 길이가 정해지지 않은 문자열을 저장하도록 함.
     content_img = models.ImageField()  # 이미지 업로드
     content_file = models.FileField()  # 파일 업로드
     date_created = models.DateTimeField(
