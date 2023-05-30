@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post, Blog, Comment, Like, Tag, Category, Neighbor
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -11,6 +11,37 @@ class PostForm(forms.ModelForm):
             'content_file',
             'writer',
         ]
+
+class BlogForm(forms.ModelForm):
+    class Meta:
+        model = Blog
+        fields = ['title', 'description']
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['comment']
+
+class LikeForm(forms.ModelForm):
+    class Meta:
+        model = Like
+        fields = ['user','post','date']
+
+class TagForm(forms.ModelForm):
+    
+    class Meta:
+        model = Tag
+        fields = ['tag',]
+
+class Category(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['blog','category']
+
+class Neighbor(forms.Model):
+    model = Neighbor
+    fields = ['user', 'date_added','neighbor']
+
 
 #'date_created','date_updated'필드는 'auto_now_add=True'와 auto_now=True'로 설정되어 있으므로
 #장고가 자동으로 관리하므로 위의 양식에서 제외함.
