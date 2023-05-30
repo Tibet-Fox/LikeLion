@@ -1,8 +1,10 @@
 from django.core.paginator import Paginator
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Comment, Post, Blog
-from .forms import PostForm, BlogForm, CommentForm
+from .models import Comment, Post, Blog, Like, Tag, Neighbor
+from .forms import PostForm, BlogForm, CommentForm, TagForm
+from django.contrib.auth.models import User
+
 
 
 def home(request):
@@ -155,3 +157,72 @@ def comment_delete(request, pk):
     else:
         messages.error(request, '잘못된 요청입니다.')
         return redirect('post_detail', pk=post_pk)
+    
+
+# 좋아요 생성
+def like_create(request, post_pk):
+    post = get_object_or_404(Post, pk=post_pk)
+    Like.objects.create(user=request.user, post=post)
+    return redirect('post_detail', pk=post.pk)
+
+
+# 좋아요 취소
+def like_delete(request, post_pk):
+    post = get_object_or_404(Post, pk=post_pk)
+    like = get_object_or_404(Like, user=request.user, post=post)
+    like.delete()
+    return redirect('post_detail', pk=post.pk)
+
+# 태그 생성
+def tag_create(request):
+    if request.method == 'POST':
+        form = TagForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('tag_list')
+    else:
+        form = TagForm()
+    return render(request, 'tag_create.html', {'form': form})
+
+
+# 태그 리스트 조회
+def tag_list(request):
+    tags = Tag.objects.all()
+    return render(request, 'tag_list.html', {'tags': tags})
+
+
+# 태그 업데이트
+def tag_update(request, pk):
+    tag = get_object_or_404(Tag, pk=pk)
+    if request.method == 'POST':
+        form = TagForm(request.POST, instance=tag)
+        if form.is_valid():
+            form.save()
+            return redirect('tag_list')
+    else:
+        form = TagForm(instance=tag)
+    return render(request, 'tag_update.html', {'form': form})
+
+
+# 태그 삭제
+def tag_delete(request, pk):
+    tag = get_object_or_404(Tag, pk=pk)
+    if request.method == 'POST':
+        tag.delete()
+        return redirect('tag_list')
+    else:
+        messages.error(request, '잘못된 요청입니다.')
+        return redirect('tag_list')
+
+# 팔로우
+def follow(request, user_pk):
+    user_to_follow = get_object_or_404(User, pk=user_pk)
+    Neighbor.objects.create(user=request.user, neighbor=user_to_follow)
+    return redirect('user_detail', pk=user_to_follow.pk)
+
+# 언팔로우
+def unfollow(request, user_pk):
+    user_to_unfollow = get_object_or_404(User, pk=user_pk)
+    follow_instance = get_object_or_404(Neighbor, user=request.user, neighbor=user_to_unfollow)
+    follow_instance.delete()
+    return redirect('user_detail', pk=user_to_unfollow.pk)

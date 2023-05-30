@@ -80,3 +80,4 @@ class Neighbor(models.Model):
 
     def __str__(self):
         return f"{self.user.username} follows {self.neighbor.username}"
+

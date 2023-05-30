@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Blog, Comment, Like, Tag, Category, Neighbor
+from .models import Post, Blog, Comment, Tag, Category
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -22,11 +22,6 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ['comment']
 
-class LikeForm(forms.ModelForm):
-    class Meta:
-        model = Like
-        fields = ['user','post','date']
-
 class TagForm(forms.ModelForm):
     
     class Meta:
@@ -38,9 +33,6 @@ class Category(forms.ModelForm):
         model = Category
         fields = ['blog','category']
 
-class Neighbor(forms.Model):
-    model = Neighbor
-    fields = ['user', 'date_added','neighbor']
 
 
 #'date_created','date_updated'필드는 'auto_now_add=True'와 auto_now=True'로 설정되어 있으므로
